@@ -1,0 +1,46 @@
+.NewPage {
+  position: relative;
+  text-align: center;
+
+  p {
+    color: #444;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 24px auto 24px;
+    width: 80%;
+
+    &:first-child {
+      margin-top: 6px;
+    }
+  }
+
+  &-description {
+    padding-top: 1px;
+    position: relative;
+  }
+}
+
+.NewPage-content {
+  &-enter {
+    transition: opacity .3s @enter-function .3s;
+    opacity: 0;
+    z-index: 2;
+  }
+  &-enter-active {
+    opacity: 1;
+  }
+
+  &-leave {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 1px;
+    transition: opacity .3s @exit-function;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  &-leave-active {
+    opacity: 0;
+  }
+}

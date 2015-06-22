@@ -1,0 +1,130 @@
+.NewCard {
+  width: 90%;
+  max-width: 350px;
+  margin: 16px auto;
+  position: relative;
+  z-index: 3;
+  background-color: white;
+
+  &-message {
+    color: @danger-color;
+    margin-bottom: 32px;
+  }
+
+  &-inner {
+    padding: 24px 24px 32px;
+  }
+
+  &-image-selector {
+    position: relative;
+    max-width: 256px;
+    margin: 8px auto 24px;
+
+    // padding-top is a percentage of width, allowing us to make a perfectly
+    // square absolute box
+    // http://stackoverflow.com/questions/12121090/responsively-change-div-size-keeping-aspect-ratio
+    &:after {
+      padding-top: 100%;
+      display: block;
+      content: '';
+    }
+  }
+
+  &-image {
+    position: absolute;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  &-dropzone {
+    position: absolute;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: #aaa;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
+    padding: 0 32px;
+    font-size: 18px;
+    line-height: 24px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+
+    &-message {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-name {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    resize: none;
+    outline: 0;
+    transition: border-color ease-out 0.15s;
+
+    &:focus {
+      border-color: @primary-color;
+    }
+  }
+
+  &-error {
+    border-color: #d9534f;
+  }
+
+  &-submit {
+    width: 100%;
+    position: relative;
+    background-color: @primary-color;
+    color: rgba(255, 255, 255, 0.87);
+    border: none;
+    padding: 8px 16px;
+    font-size: 18px;
+    border-radius: 6px;
+    margin: 16px 0 0;
+    transition: background-color ease-out 0.15s;
+    cursor: pointer;
+    outline: 0;
+
+    &:not([disabled]):hover {
+      background-color: lighten(@primary-color, 10%);
+    }
+
+    &:active {
+      top: 1px;
+      left: 1px;
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 6px @primary-color;
+    }
+
+    &[disabled] {
+      opacity: 0.7;
+      cursor: progress;
+    }
+  }
+
+  &-loading {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    z-index: 3;
+    bottom: 0;
+    transition: height ease-out 0.15s;
+  }
+
+  &-loading-entered {
+    height: 4px;
+  }
+}

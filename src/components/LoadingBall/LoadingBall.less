@@ -1,0 +1,32 @@
+.LoadingBall {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+
+  &-inner-1, &-inner-2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: @primary-color;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    animation: LoadingBall-bounce 2.0s infinite ease-in-out;
+  }
+
+  &-inner-2 {
+    animation-delay: -1.0s;
+  }
+}
+
+@keyframes LoadingBall-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+  } 
+  50% { 
+    transform: scale(1.0);
+  }
+}

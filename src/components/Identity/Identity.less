@@ -1,0 +1,27 @@
+.Identity {
+  &-login, &-logout {
+    cursor: pointer;
+    line-height: 50px;
+  }
+
+  &-avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+
+  &-name {
+    display: inline-block;
+    margin: 0 0 0 12px;
+
+    &:after {
+      content: "・";
+      display: inline-block;
+      margin: 0 12px;
+    }
+  }
+
+  &-loading {
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}

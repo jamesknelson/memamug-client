@@ -1,0 +1,30 @@
+.BigRedButton {
+  position: relative;
+  background-color: @danger-color;
+  width: 128px;
+  height: 128px;
+  cursor: pointer;
+  transition: background-color ease-out 0.15s;
+
+  &-working {
+    animation: spin 4s infinite linear;
+  }
+
+  &:hover, &:focus {
+    background-color: darken(@danger-color, 15%);
+  }
+
+  &:active {
+    top: 1px;
+    left: 1px;
+  }
+
+  &-inner {
+    text-align: center;
+    padding-top: 55px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 13px;
+  }
+}

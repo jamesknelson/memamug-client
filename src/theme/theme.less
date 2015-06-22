@@ -1,0 +1,36 @@
+// Import dependencies 
+@import "./constants/palette.less";
+@import "./constants/timings.less";
+
+@import "./mixins/image.less";
+
+@import "./animations/spin.less";
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body, #react-app {
+  height: 100%;
+  min-height: 100%;
+  font-family: Roboto;
+}
+
+a {
+  color: @primary-color;
+}
+
+// `.less` extensions must be added to placate `extract-text-webpack-plugin`
+@import "../components/ApplicationLayout/ApplicationLayout.less";
+@import "../components/BigRedButton/BigRedButton.less";
+@import "../components/Identity/Identity.less";
+@import "../components/LoadingBall/LoadingBall.less";
+@import "../components/LoadingBar/LoadingBar.less";
+@import "../components/MugsPage/MugsPage.less";
+@import "../components/NewCard/NewCard.less";
+@import "../components/NewPage/NewPage.less";
+@import "../components/NotFoundPage/NotFoundPage.less";
+@import "../components/PageTitle/PageTitle.less";
+@import "../components/Paper/Paper.less";
+@import "../components/UnsubscribePage/UnsubscribePage.less";

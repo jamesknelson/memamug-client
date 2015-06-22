@@ -1,0 +1,64 @@
+@ApplicationLayout-header-height: 80px;
+@ApplicationLayout-footer-height: 96px;
+
+.ApplicationLayout {
+  height: 100%;
+
+  &-brand {
+    position: fixed;
+    top: 0;
+    margin: 25px 0;
+    left: 24px;
+    z-index: 5;
+
+    .image-retina("/memamug.png", "/memamug-2x.png", 136px, 24px);
+
+    @media (max-width: 500px) {
+      display: none;
+    }
+  }
+
+  &-identity {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    text-align: right;
+    height: @ApplicationLayout-header-height;
+    padding: 12px 24px;
+    z-index: 4;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 66%, rgba(255,255,255,0) 100%);
+  }
+
+  &-page {
+    position: relative;
+    padding-top: @ApplicationLayout-header-height;
+    min-height: 100%;
+    max-width: 550px;
+    margin: 0 auto -@ApplicationLayout-footer-height - 1px;
+    
+    &:after {
+      content: "";
+      display: block;
+      height: @ApplicationLayout-footer-height;
+    }
+  }
+
+  &-footer {
+    position: relative;
+    height: @ApplicationLayout-footer-height;
+    text-align: center;
+    padding-top: 12px;
+    line-height: 36px;
+    color: #888;
+
+    @media (max-width: 400px) {
+      font-size: 14px;
+    }
+
+    p {
+      display: inline-block;
+      margin: 0 10px;
+    }
+  }
+}
