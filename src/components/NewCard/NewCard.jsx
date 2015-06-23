@@ -1,5 +1,5 @@
 import React from "react";
-import Dropzone from "react-dropzone";
+import ImageDrop from "../ImageDrop/ImageDrop";
 import Base from "../Base";
 import LoadingBar from "../LoadingBar/LoadingBar"
 import Paper from "../Paper/Paper";
@@ -49,9 +49,9 @@ class NewCard extends Base {
           {message}
           <div className={this.c("image-selector")}>
             {image}
-            <Dropzone className={this.c("dropzone", {'error': this.hasError('file')})} onDrop={this.onDrop.bind(this)} supportClick={!this.isDisabled()}>
+            <ImageDrop className={this.c("dropzone", {'error': this.hasError('file')})} onDrop={this.onDrop.bind(this)} accept="image/jpeg">
               {!image && <div className={this.c("dropzone-message")}>Drop a face here, or click to select one.</div>}
-            </Dropzone>
+            </ImageDrop>
           </div>
           <div>
             <input className={this.c("name", {'error': this.hasError('name')})} onChange={this.onChangeName.bind(this)} disabled={this.isDisabled()} placeholder="Name to remember" value={contact.data.name} ref="name" />
