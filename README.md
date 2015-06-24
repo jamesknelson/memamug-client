@@ -1,14 +1,14 @@
 # Memamug
 
-An open-source app whichs help you remember poeple you'd normally forget. See the live version at [memamug.com](http://www.memamug.com).
+An open-source app which helps you remember people you'd normally forget. See the live version at [memamug.com](http://www.memamug.com).
 
-This app was built to demonstrate how to write a simple web-app, without resorting to a cliche to-do list. I'll be writing a number of tutorials to explain how to build this app, from creating the initial directory structure to deploying it live. Follow [@james_k_nelson](https://twitter.com/james_k_nelson) to keep updated. 
+This app was built to demonstrate how to write a simple web-app, without resorting to a cliché to-do list. I'll be writing a number of tutorials to explain how to build this app, from creating the initial directory structure to deploying it live. Follow [@james_k_nelson](https://twitter.com/james_k_nelson) to keep updated. 
 
 ## Getting Started
 
 *If you haven't already, install and start [memamug-server](https://github.com/jamesknelson/memamug-server)*
 
-Once you have the server installed, getting started only takes four lines in your favourite terminal app:
+Once you have the server installed, getting started only takes four lines in your favorite terminal app:
 
 ```
 git clone git@github.com:jamesknelson/memamug-client.git
