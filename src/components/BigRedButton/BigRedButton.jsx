@@ -1,22 +1,21 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 import Paper from "../Paper/Paper";
 
-export default class BigRedButton extends Base {
+
+@base
+export default class BigRedButton extends Component {
   render() {
+    const classes = {
+      working: this.props.working,
+    }
+
     return (
-      <Paper
-        className={this.getComponentClasses({working: this.props.working})}
-        shape="circle">
-        <div className={this.c("inner")} onClick={this.onClick.bind(this)}>
+      <Paper {...this.base({classes})} shape="circle">
+        <div className={this.c("inner")}>
           {this.props.children}
         </div>
       </Paper>
     );
-  }
-
-  onClick() {
-    console.log('click!');
-    this.props.onClick();
   }
 }

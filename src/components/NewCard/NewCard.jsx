@@ -1,11 +1,22 @@
-import React from "react";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 import ImageDrop from "../ImageDrop/ImageDrop";
-import Base from "../Base";
 import LoadingBar from "../LoadingBar/LoadingBar"
 import Paper from "../Paper/Paper";
 
 
-class NewCard extends Base {
+@base
+export default class NewCard extends Component {
+  static propTypes = {
+    contact: PropTypes.object,
+    identity: PropTypes.object,
+  }
+
+  static contextTypes = {
+    Actions: PropTypes.object,
+  }
+
+
   constructor(props) {
     super(props);
 
@@ -44,18 +55,18 @@ class NewCard extends Base {
       <div className={this.c("message")}>{contact.message}</div>
 
     return (
-      <Paper className={this.getComponentClasses()}>
+      <Paper {...this.base()}>
         <div className={this.c("inner")}>
           {message}
           <div className={this.c("image-selector")}>
             {image}
-            <ImageDrop className={this.c("dropzone", {'error': this.hasError('file')})} onDrop={this.onDrop.bind(this)} accept="image/jpeg">
+            <ImageDrop className={this.c("dropzone", {'error': this.hasError('file')})} onSelect={this.onSelect} accept="image/jpeg">
               {!image && <div className={this.c("dropzone-message")}>Drop a face here, or click to select one.</div>}
             </ImageDrop>
           </div>
           <div>
-            <input className={this.c("name", {'error': this.hasError('name')})} onChange={this.onChangeName.bind(this)} disabled={this.isDisabled()} placeholder="Name to remember" value={contact.data.name} ref="name" />
-            <button className={this.c("submit")} onClick={this.onSubmitContact.bind(this)} disabled={this.isDisabled()}>
+            <input className={this.c("name", {'error': this.hasError('name')})} onChange={this.onChangeName} disabled={this.isDisabled()} placeholder="Name to remember" value={contact.data.name} ref="name" />
+            <button className={this.c("submit")} onClick={this.onSubmitContact} disabled={this.isDisabled()}>
               {this.props.identity.get('accessToken') ? 'Remind me!' : 'Login and remind me!'}
             </button>
           </div>
@@ -70,11 +81,11 @@ class NewCard extends Base {
     return this.state.submitPressed && this.props.contact.get('errors').get(prop).size;
   }
 
-  onChangeName(e) {
+  onChangeName = e => {
     this.context.Actions.Contact.update({name: event.target.value});
   }
 
-  onDrop(files) {
+  onSelect = files => {
     // Our Dropzone component doesn't support
     if (this.isDisabled()) return;
 
@@ -92,7 +103,7 @@ class NewCard extends Base {
     reader.readAsDataURL(file);
   }
 
-  onSubmitContact() {
+  onSubmitContact = () => {
     if (!this.submitPressed && !this.props.contact.get('valid')) {
       this.setState({submitPressed: true});
     }
@@ -112,9 +123,3 @@ class NewCard extends Base {
     if (this.props.contact.get('valid')) this.context.Actions.Contact.post();
   }
 }
-
-NewCard.contextTypes = {
-  Actions: React.PropTypes.object
-};
-
-export default NewCard;

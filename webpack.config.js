@@ -35,7 +35,8 @@ export default (DEBUG, PATH, PORT=9000) => ({
       // Load ES6/JSX
       { test: /\.jsx?$/,
         include: [path.join(__dirname, "src"), path.join(__dirname, "config")],
-        loader: "babel-loader" },
+        loader: "babel-loader",
+        query: {stage: 0}, },
 
       // Load styles
       { test: /\.less$/,

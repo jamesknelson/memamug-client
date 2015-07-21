@@ -1,10 +1,11 @@
-import React from "react";
+import React, {Component, PropTypes} from "react";
 import equal from "deep-equal";
-import Base from "./Base";
+import {base} from "../utils/decorators";
 import router from "../utils/router";
 
 
-class Link extends Base {
+@base
+class Link extends Component {
   isActive() {
     const stateParts = this.context.currentRoute.name.split('.');
     const propsParts = this.props.to.split('.');
@@ -16,13 +17,13 @@ class Link extends Base {
   }
 
   render() {
-    const activeClass = this.isActive() ? ' '+this.props.activeClassName : '';
+    const classes = {
+      [this.props.activeClassName]: this.isActive(),
+    }
 
     return (
-      <a
-        {...this.props}
-        href={'#'+router.makePath(this.props.to, this.props.params)}
-        className={this.getComponentClasses() + activeClass}>
+      <a {...this.base({classes})}
+        href={'#'+router.makePath(this.props.to, this.props.params)}>
         {this.props.children}
       </a>
     );
@@ -30,14 +31,14 @@ class Link extends Base {
 }
 
 Link.contextTypes = {
-  Actions: React.PropTypes.object,
-  currentRoute: React.PropTypes.object
+  Actions: PropTypes.object,
+  currentRoute: PropTypes.object
 };
 
 Link.propTypes = {
-  activeClassName: React.PropTypes.string.isRequired,
-  to: React.PropTypes.string.isRequired,
-  params: React.PropTypes.object
+  activeClassName: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  params: PropTypes.object
 };
 
 Link.defaultProps = {

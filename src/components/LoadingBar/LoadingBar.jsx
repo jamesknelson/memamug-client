@@ -1,7 +1,9 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 
-export default class LoadingBar extends Base {
+
+@base
+export default class LoadingBar extends Component {
   constructor(props) {
     super(props)
 
@@ -30,7 +32,7 @@ export default class LoadingBar extends Base {
 
   render() {
     return (
-      <div className={this.getComponentClasses()}>
+      <div {...this.base()}>
         <div className={this.c("inner")} style={{width: this.state.completed+'%'}} />
       </div>
     );

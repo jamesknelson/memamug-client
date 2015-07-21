@@ -1,16 +1,26 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 
-class ImageDrop extends Base {
+
+@base
+export default class ImageDrop extends Component {
+  static propTypes = {
+    onSelect: PropTypes.func.isRequired,
+    accept: PropTypes.string,
+  }
+
+
   constructor() {
     super();
     this.state = {isDragActive: false};
   }
 
+  @base.on('dragLeave')
   onDragLeave(e) {
     this.setState({isDragActive: false});
   }
 
+  @base.on('dragOver')
   onDragOver(e) {
     e.preventDefault();
     e.dataTransfer.dropEffect = "copy";
@@ -18,6 +28,7 @@ class ImageDrop extends Base {
     this.setState({isDragActive: true});
   }
 
+  @base.on('drop')
   onDrop(e) {
     e.preventDefault();
 
@@ -26,19 +37,17 @@ class ImageDrop extends Base {
     const files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
     
     files[0].preview = URL.createObjectURL(files[0]);
-    
-    if (this.props.onDrop) {
-      this.props.onDrop(files, e);
-    }
+
+    this.props.onSelect(files, e);
   }
 
   render() {
+    const classes = {
+      active: this.state.isDragActive,
+    }
+
     return (
-      <label
-        className={this.getComponentClasses({active: this.state.isDragActive})}
-        onDragLeave={this.onDragLeave.bind(this)}
-        onDragOver={this.onDragOver.bind(this)}
-        onDrop={this.onDrop.bind(this)}>
+      <label {...this.base({classes})}>
         <input
           type="file"
           onChange={this.onDrop.bind(this)}
@@ -49,10 +58,3 @@ class ImageDrop extends Base {
     );
   }
 }
-
-ImageDrop.propTypes = {
-  onDrop: React.PropTypes.func.isRequired,
-  accept: React.PropTypes.string
-};
-
-export default ImageDrop;

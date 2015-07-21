@@ -1,10 +1,12 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 
-export default class LoadingBall extends Base {
+
+@base
+export default class LoadingBall extends Component {
   render() {
     return (
-      <div className={this.getComponentClasses()}>
+      <div {...this.base()}>
         <div className={this.c("inner-1")}></div>
         <div className={this.c("inner-2")}></div>
       </div>

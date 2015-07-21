@@ -1,10 +1,12 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 
-export default class NotFoundPage extends Base {
+
+@base
+export default class NotFoundPage extends Component {
   render() {
     return (
-      <div className={this.getComponentClasses()}>
+      <div {...this.base()}>
         <h1 className={this.c("title")}>404</h1>
       </div>
     );

@@ -1,12 +1,19 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 import Link from "../Link";
 import Identity from "../Identity/Identity";
 
-export default class ApplicationLayout extends Base {
+
+@base
+export default class ApplicationLayout extends Component {
+  static propTypes = {
+    identity: PropTypes.object,
+    page: PropTypes.node,
+  }
+
   render() {
     return (
-      <div className={this.getComponentClasses()}>
+      <div {...this.base()}>
         <header className={this.c("header")}>
           <Link className={this.c("brand")} to="new" />
           <Identity className={this.c("identity")} identity={this.props.identity} />

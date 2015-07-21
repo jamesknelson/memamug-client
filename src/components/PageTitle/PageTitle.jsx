@@ -1,10 +1,12 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 
-export default class PageTitle extends Base {
+
+@base
+export default class PageTitle extends Component {
   render() {
     return (
-      <h1 className={this.getComponentClasses()}>{this.props.children}</h1>
+      <h1 {...this.base()}>{this.props.children}</h1>
     );
   }
 }

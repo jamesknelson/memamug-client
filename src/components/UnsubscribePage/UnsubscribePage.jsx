@@ -1,9 +1,21 @@
-import React from "react";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../../utils/decorators";
 import PageTitle from "../PageTitle/PageTitle";
 import BigRedButton from "../BigRedButton/BigRedButton";
 
-class UnsubscribePage extends Base {
+
+@base
+export default class UnsubscribePage extends Component {
+  static propTypes = {
+    identity: PropTypes.object.isRequired,
+    subscriptions: PropTypes.object.isRequired,
+  }
+
+  static contextTypes = {
+    Actions: React.PropTypes.object,
+  }
+
+
   render() {
     let content;
 
@@ -31,7 +43,7 @@ class UnsubscribePage extends Base {
     }
 
     return (
-      <div className={this.getComponentClasses()}>
+      <div {...this.base()}>
         <PageTitle className={this.c("title")}>Unsubscribe</PageTitle>
         {content}
       </div>
@@ -43,9 +55,3 @@ class UnsubscribePage extends Base {
     this.context.Actions.Subscriptions.deleteAll();
   }
 }
-
-UnsubscribePage.contextTypes = {
-  Actions: React.PropTypes.object
-};
-
-export default UnsubscribePage;

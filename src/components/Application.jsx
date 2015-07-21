@@ -1,5 +1,5 @@
-import React from "react";
-import Base from "./Base";
+import React, {Component, PropTypes} from "react";
+import {base} from "../utils/decorators";
 import ApplicationLayout from "./ApplicationLayout/ApplicationLayout";
 import MugsPage from "./MugsPage/MugsPage";
 import NewPage from "./NewPage/NewPage";
@@ -7,7 +7,8 @@ import UnsubscribePage from "./UnsubscribePage/UnsubscribePage";
 import NotFoundPage from "./NotFoundPage/NotFoundPage";
 
 
-class Application extends Base {
+@base
+class Application extends Component {
   getChildContext() {
     return {
       Actions: this.props.Actions,
@@ -46,7 +47,7 @@ class Application extends Base {
 
     return (
       <ApplicationLayout
-        className={this.getComponentClasses()}
+        {...this.base()}
         identity={this.props.identity}
         page={page}
       />
@@ -55,8 +56,8 @@ class Application extends Base {
 }
 
 Application.childContextTypes = {
-  Actions: React.PropTypes.object,
-  currentRoute: React.PropTypes.object
+  Actions: PropTypes.object,
+  currentRoute: PropTypes.object
 };
 
 export default Application;

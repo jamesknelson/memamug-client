@@ -1,5 +1,5 @@
-import React from "react/addons";
-import Base from "../Base";
+import React, {Component, PropTypes} from "react/addons";
+import {base} from "../../utils/decorators";
 import Link from "../Link";
 import PageTitle from "../PageTitle/PageTitle";
 import NewCard from "../NewCard/NewCard";
@@ -62,7 +62,14 @@ const WELCOME_BACK_MESSAGE =
     </div>
 
 
-class NewPage extends Base {
+@base
+export default class NewPage extends Component {
+  static propTypes = {
+    contact: PropTypes.object,
+    identity: PropTypes.object,
+  }
+
+
   constructor(props) {
     super(props);
 
@@ -86,10 +93,10 @@ class NewPage extends Base {
         : DEFAULT_MESSAGE(contacts);
 
     return (
-      <div className={this.getComponentClasses()}>
+      <div {...this.base()}>
         <PageTitle className={this.c("title")}>Can't afford to forget faces?</PageTitle>
         <div className={this.c("description")}>
-          <ReactCSSTransitionGroup transitionName="NewPage-content">
+          <ReactCSSTransitionGroup transitionName="mm-NewPage-content">
             {message}
           </ReactCSSTransitionGroup>
         </div>
@@ -98,5 +105,3 @@ class NewPage extends Base {
     );
   }
 }
-
-export default NewPage;
